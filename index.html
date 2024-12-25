@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>圣诞快乐！</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<style>
 			html,
 			body {
@@ -16,17 +17,29 @@
 				position: fixed;
 				top: 0;
 				left: 0;
+				width: 100%;
+			        height: 100%;
+				overflow: hidden; /* 防止内容溢出 */
 			}
 
 			#video1 {
 				width: 100%;
 				height: 100%;
-        display: none;
+        			display: none;
+				object-fit: cover;
 			}
 
 			.hidden {
 				display: none;
 			}
+			/* 确保 canvas 占满整个容器 */
+			    canvas.canvas {
+			      position: absolute;
+			      top: 0;
+			      left: 0;
+			      width: 100%;
+			      height: 100%;
+			    }
 		</style>
 
 	</head>
