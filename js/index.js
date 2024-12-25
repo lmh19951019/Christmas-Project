@@ -22,6 +22,16 @@ var S = {
 setTimeout(function(){
   var video = document.getElementById("video1");
   video.style.display ='block';
+    // 获取窗口宽度
+  var windowWidth = window.innerWidth;
+  
+  if (windowWidth < 768) { // 手机设备
+    video.style.width = '100%';
+    video.style.height = 'auto';
+  } else { // 平板及以上设备
+    video.style.width = '60%'; // 根据需要调整
+    video.style.height = 'auto';
+  }
 		video.playbackRate *= 0.8;
 		video.play();
 },9000)
