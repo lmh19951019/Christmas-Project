@@ -10,8 +10,7 @@ var S = {
       S.UI.simulate(decodeURI(action).substring(i + 3));
     } else {
       // 倒计时修改这句中的数字，不需要倒计时删除“|#countdown 3|”，换内容修改文字
-      S.UI.simulate('|#countdown 3|圣诞快乐|');
-      S.UI.simulate('|蓝素萍|');	
+      S.UI.simulate('|#countdown 3|圣诞快乐|蓝素萍|');
     }
 
     S.Drawing.loop(function () {
