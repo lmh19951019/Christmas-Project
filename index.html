@@ -1,91 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>圣诞快乐！</title>
-		<style>
-			html,
-			body {
-				margin: 0;
-				width: 100%;
-				height: 100%;
-        background-color: black;
-			}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>圣诞快乐！</title>
+  <style>
+    /* 设置通用样式 */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      font-family: Arial, sans-serif;
+    }
 
-			#main {
-				position: fixed;
-				top: 0;
-				left: 0;
-			}
+    /* 主容器样式 */
+    #main {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-			#video1 {
-				width: 100%;
-				height: 100%;
-        display: none;
-			}
+    /* 视频样式 */
+    #video1 {
+      width: 100%;
+      height: auto; /* 保持视频宽高比 */
+      display: block; /* 默认显示视频 */
+    }
 
-			.hidden {
-				display: none;
-			}
-		</style>
+    /* 音乐样式 */
+    #music1 {
+      display: none; /* 隐藏音频控件 */
+    }
 
-	</head>
+    /* Canvas 样式 */
+    .canvas {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 1; /* 确保 Canvas 在最上层 */
+    }
 
-	<body id="app">
-		<div id="main">
-			<video id="video1" muted="muted" autoplay="autoplay" loop="loop" src="./video/chrismas.mp4">
-			</video>
-			<audio id="music1" autostart="true" loop="loop" preload="auto" controls hidden="true">
-				<source src="./music/jinniandongtianpeizhewoba.mp3"></source>
-			</audio>
-<!-- 倒数 -->
-<!-- <canvas style="position:absolute;width:100%;height:100%;z-index:9999" class="canvas" ></canvas> -->
-<canvas  class="canvas" ></canvas>
-<div class="overlay">
-  <div class="tabs">
-    <div class="tabs-labels"><span class="tabs-label"></span><span class="tabs-label"></span><span class="tabs-label"></span></div>
+    /* 针对小屏幕设备的样式 */
+    @media (max-width: 768px) {
+      body {
+        font-size: 0.9rem; /* 调整字体大小 */
+      }
 
-    <div class="tabs-panels">
-      <ul class="tabs-panel commands">
-      </ul>
+      #video1 {
+        width: 100%;
+        height: auto; /* 手机上自动缩放视频 */
+      }
+
+      .tabs-labels {
+        font-size: 0.8rem; /* 调整标签字体大小 */
+      }
+    }
+  </style>
+</head>
+<body id="app">
+  <div id="main">
+    <!-- 视频 -->
+    <video id="video1" muted autoplay loop src="./video/chrismas.mp4"></video>
+    
+    <!-- 音频 -->
+    <audio id="music1" autostart="true" loop preload="auto" controls hidden>
+      <source src="./music/jinniandongtianpeizhewoba.mp3">
+    </audio>
+
+    <!-- Canvas 动画 -->
+    <canvas class="canvas"></canvas>
+    
+    <!-- 其他内容 -->
+    <div class="overlay">
+      <div class="tabs">
+        <div class="tabs-labels">
+          <span class="tabs-label">标签1</span>
+          <span class="tabs-label">标签2</span>
+          <span class="tabs-label">标签3</span>
+        </div>
+        <div class="tabs-panels">
+          <ul class="tabs-panel commands"></ul>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-		</div>
+  <script>
+    // 动态调整 Canvas 尺寸
+    const canvas = document.querySelector('.canvas');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-	</body>
-	<script type="text/javascript">
-		
-		// $(function() {
-			// var video = document.getElementById("video1");
-			// video.src = "";
-			// video.play();
+    // 自动播放视频和音频
+    const video = document.getElementById('video1');
+    const music = document.getElementById('music1');
 
-			// var music = document.getElementById("music1");
-			// music.src = "";
-			// music.play();
-		// });
-	</script>
-	<!-- <script>
-		var myAuto = document.getElementById('music1');
-		var app = document.getElementById("app");
-		// 监听事件
-		app.addEventListener("mousemove", function() {
-			console.log("played");
-			myAuto.play();
-		}, true);
+    // 页面加载后自动播放
+    window.onload = () => {
+      video.play();
+      music.play();
+    };
 
-		// 用定时器触发事件
-		setInterval(function() {
-			if ("createEvent" in document) {
-				var evt = document.createEvent("HTMLEvents");
-				evt.initEvent("mousemove", false, true);
-				app.dispatchEvent(evt);
-			} else{
-				app.fireEvent("onmousemove");
-			}
-		}, 1000);
-	</script> -->
+    // 如果需要用户交互触发音频播放
+    document.body.addEventListener('click', () => {
+      music.play();
+    });
+  </script>
   <script src="js/index.js"></script>
+</body>
 </html>
